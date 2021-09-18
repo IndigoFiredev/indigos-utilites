@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 from discord.ext import tasks
-import time
+import asyncio
 from itertools import cycle
 from keep_alive import keep_alive
 
@@ -20,6 +20,7 @@ async def change_status():
   await client.change_presence(status=discord.Status.online, activity=discord.Game(next(status)))
 
 @client.command(description="pings the mods for support")
+async def support(ctx):
   await ctx.send('hey there, i noticed you need support! I will now ping mods for you <@&871708036367016007>')
 
 @client.command(description="sets the slowmode of a channel")
@@ -40,6 +41,76 @@ async def unmute(ctx, member: discord.Member):
    await member.send(f" you have unmuted from: - {ctx.guild.name}")
    embed = discord.Embed(title="unmute", description=f" unmuted-{member.mention}",colour=discord.Colour.light_gray())
    await ctx.send(embed=embed)
+
+@client.command()
+@commands.has_permissions(manage_messages=True)
+async def rule1(ctx, member:discord.Member):
+  await ctx.send('do not waste a staff members time')
+
+@client.command()
+@commands.has_permissions(manage_messages=True)
+async def rule2(ctx, member: discord.Member):
+  await ctx.send('No nsfw content.')
+
+@client.command()
+@commands.has_permissions(manage_messages=True)
+async def rule3(ctx, member: discord.Member):
+  await ctx.send('do not advertise unless in <#871316395365920768>')
+
+
+@client.command()
+@commands.has_permissions(manage_messages=True)
+async def rule4(ctx, member: discord.member):
+  await ctx.send('Please use the channels for their intended purpose')
+
+
+@client.command()
+@commands.has_permissions(manage_messages=True)
+async def rule5(ctx, member: discord.Member):
+  await ctx.send('No abuse to staff')
+
+@client.command()
+@commands.has_permissions(manage_messages=True)
+async def rule6(ctx, member: discord.Member):
+  await ctx.send('Swearing is not allowed under any circumstance')
+
+@client.command()
+@commands.has_permissions(manage_messages=True)
+async def rule7(ctx, member: discord.Member):
+  await ctx.send('Do not spam')
+
+
+@client.command()
+@commands.has_permissions(manage_messages=True)
+async def rule8(ctx, member: discord.Member):
+  await ctx.send('Do not post malicious links')
+
+@client.command()
+@commands.has_permissions(manage_messages=True)
+async def rule9(ctx, member: discord.Member):
+  await ctx.send('Please keep a pingable username')
+
+@client.command()
+@commands.has_permissions(manage_messages=True)
+async def rule10(ctx, member: discord.Member):
+  await ctx.send('obey the discord ToS')
+
+
+@client.command()
+@commands.has_permissions(manage_messages=True)
+async def rule11(ctx, member: discord.member):
+  await ctx.send('dont annoy people in VCs')
+
+@client.command()
+@commands.has_permissions(manage_messages=True)
+async def rule12(ctx, member: discord.member):
+  await ctx.send('do not use alts to gain an advantage or to bypass anything')
+
+
+@client.command()
+@commands.has_permissions(manage_messages=True)
+async def rule13(ctx, member: discord.Member):
+  await ctx.send('racism will not be tolerated')
 
 @client.command(description="mutes a member. GIVE ME A REASON")
 @commands.has_permissions(manage_messages=True)
@@ -132,7 +203,7 @@ async def clear_error(ctx, error):
 
 @client.command(description="gives you the bots ping")
 async def ping(ctx):
-  await ctx.send(f':ping_pong: Pong! My latency is {round(client.latency)}ms')
+  await ctx.send(f':ping_pong: Pong! My latency is {round(client.latency * 1000)}ms')
 
 @client.command(description="kicks people for being bad")
 @commands.has_permissions(kick_members=True)
@@ -141,9 +212,9 @@ async def kick(ctx, member : discord.Member, *, reason=None):
   await ctx.send(f'Kicked {member.mention}')
   return
 
-@client.command(description="gives the invite link")
+@client.command()
 async def invite(ctx):
-  await ctx.send(f'hey there {member.mention}, I noticed you tried to invite me to your server. Sadly i cannot be invited however all of my code is open source. you can find it at https://github.com/IndigoFiredev/indigos-utilites!')
+  await ctx.send('hey there, I noticed you tried to invite me to your server. Sadly i cannot be invited however all of my code is open source. you can find it at https://github.com/IndigoFiredev/indigos-utilites')
 
 @client.command(description="bans a member")
 @commands.has_permissions(ban_members=True)
