@@ -170,4 +170,4 @@ async def unban(ctx, *, member):
       return
 
 keep_alive()
-client.run('ODgzNzIyOTI1MDU0NzU0ODQ4.YTOFHA.-vyATnjzfEuHYo2XzdZJ7gRPwR8')
+client.run('your token here')
