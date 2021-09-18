@@ -19,11 +19,10 @@ async def on_ready():
 async def change_status():
   await client.change_presence(status=discord.Status.online, activity=discord.Game(next(status)))
 
-@client.command()
-async def support(ctx):
+@client.command(description="pings the mods for support")
   await ctx.send('hey there, i noticed you need support! I will now ping mods for you <@&871708036367016007>')
 
-@client.command()
+@client.command(description="sets the slowmode of a channel")
 @commands.has_permissions(manage_channels=True)
 async def slowmode(ctx, amount):
     try:
@@ -42,7 +41,7 @@ async def unmute(ctx, member: discord.Member):
    embed = discord.Embed(title="unmute", description=f" unmuted-{member.mention}",colour=discord.Colour.light_gray())
    await ctx.send(embed=embed)
 
-@client.command()
+@client.command(description="mutes a member. GIVE ME A REASON")
 @commands.has_permissions(manage_messages=True)
 async def mute(ctx, member: discord.Member, time: int, d, *, reason=None):
     guild = ctx.guild
@@ -91,24 +90,24 @@ async def mute(ctx, member: discord.Member, time: int, d, *, reason=None):
                 mutetimef.write(mutetime)
         await asyncio.sleep(1)
 
-@client.command()
+@client.command(description="gives you the info on a role")
 async def roleinfo(ctx, role: discord.Role):
   await ctx.send(f'This role is called {role.mention} and its ID is {role.id}')
 
-@client.command()
+@client.command(description="gives you info on a user")
 async def userinfo(ctx, member: discord.Member):
   await ctx.send(f'{member.mention}s ID is {member.id} and their discriminator is {member.discriminator}. They also seem really cool.')
 
-@client.command()
+@client.command(description="unmutes a member")
 @commands.has_permissions(administrator=True)
 async def unwarn(ctx, member: discord.Member):
   await ctx.send(f'unwarned {member.mention}. Count yourself lucky')
 
-@client.command()
+@client.command(description="gives you info on the server")
 async def info(ctx):
   await ctx.send('Fires World is all about trying to bring users together so that you can make friends and also enjoy your time on discord!')
 
-@client.command()
+@client.command(description="clears the messages of a channel")
 @commands.has_permissions(manage_messages=True)
 async def clear(ctx, amount : int):
   await ctx.channel.purge(limit=amount)
@@ -116,14 +115,12 @@ async def clear(ctx, amount : int):
 
 cmds = commands
 
-cmd = command
-
 @client.event
 async def on_command_error(ctx, error):
   if isinstance(error, commands.CommandNotFound):
     await ctx.send('Hey there, why dont you use a command that actually exists!')
 
-@client.command()
+@client.command(description="warns a member")
 @commands.has_permissions(manage_messages=True)
 async def warn(ctx, member: discord.Member):
   await ctx.send(f'{member.mention} has been warned! Here is a top tip {member.mention}, dont break rules :wink:')
@@ -133,29 +130,29 @@ async def clear_error(ctx, error):
   if isinstance(error, commands.MissingRequiredArgument):
     await ctx.send(' Next time, tell me how much you want to delete')
 
-@client.command()
+@client.command(description="gives you the bots ping")
 async def ping(ctx):
   await ctx.send(f':ping_pong: Pong! My latency is {round(client.latency)}ms')
 
-@client.command()
+@client.command(description="kicks people for being bad")
 @commands.has_permissions(kick_members=True)
 async def kick(ctx, member : discord.Member, *, reason=None):
   await member.kick(reason=reason)
   await ctx.send(f'Kicked {member.mention}')
   return
 
-@client.cmd()
+@client.command(description="gives the invite link")
 async def invite(ctx):
   await ctx.send(f'hey there {member.mention}, I noticed you tried to invite me to your server. Sadly i cannot be invited however all of my code is open source. you can find it at https://github.com/IndigoFiredev/indigos-utilites!')
 
-@client.command()
+@client.command(description="bans a member")
 @commands.has_permissions(ban_members=True)
 async def ban(ctx, member : discord.Member, *, reason=None):
   await member.ban(reason=reason)
   await ctx.send(f'i have banned {user.mention}')
   return
 
-@client.command()
+@client.command(description="unbans a member")
 @commands.has_permissions(ban_members=True)
 async def unban(ctx, *, member):
   banned_users = await ctx.guild.bans()
