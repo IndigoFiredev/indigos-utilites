@@ -7,17 +7,20 @@ from keep_alive import keep_alive
 
 
 client = commands.Bot(command_prefix = '-')
+
 status = cycle(['with the mods...', 'fortnite', 'minecraft', 'no', 'leaking staff channels', 'i am a youtuber', 'roblox', 'Indigo is cool'])
 
+bot = client
 
 @client.event
 async def on_ready():
   change_status.start()
   print('Logged in as:\n{0.user.name}\n{0.user.id}'.format(client))
 
+
 @tasks.loop(seconds=60)
 async def change_status():
-  await client.change_presence(status=discord.Status.online, activity=discord.Game(next(status)))
+  await client.change_presence(status=discord.Status.dnd, activity=discord.Game(next(status)))
 
 @client.command(description="pings the mods for support")
 async def support(ctx):
@@ -56,7 +59,6 @@ async def rule2(ctx, member: discord.Member):
 @commands.has_permissions(manage_messages=True)
 async def rule3(ctx, member: discord.Member):
   await ctx.send('do not advertise unless in <#871316395365920768>')
-
 
 @client.command()
 @commands.has_permissions(manage_messages=True)
