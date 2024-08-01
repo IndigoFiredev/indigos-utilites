@@ -25,6 +25,7 @@ async def change_status():
 @client.command(description="pings the mods for support")
 async def support(ctx):
   await ctx.send('hey there, i noticed you need support! I will now ping mods for you <@&871708036367016007>')
+  # change this to your moderator/staff role 
 
 @client.command(description="sets the slowmode of a channel")
 @commands.has_permissions(manage_channels=True)
@@ -44,75 +45,6 @@ async def unmute(ctx, member: discord.Member):
    await member.send(f" you have unmuted from: - {ctx.guild.name}")
    embed = discord.Embed(title="unmute", description=f" unmuted-{member.mention}",colour=discord.Colour.light_gray())
    await ctx.send(embed=embed)
-
-@client.command()
-@commands.has_permissions(manage_messages=True)
-async def rule1(ctx, member:discord.Member):
-  await ctx.send('do not waste a staff members time')
-
-@client.command()
-@commands.has_permissions(manage_messages=True)
-async def rule2(ctx, member: discord.Member):
-  await ctx.send('No nsfw content.')
-
-@client.command()
-@commands.has_permissions(manage_messages=True)
-async def rule3(ctx, member: discord.Member):
-  await ctx.send('do not advertise unless in <#871316395365920768>')
-
-@client.command()
-@commands.has_permissions(manage_messages=True)
-async def rule4(ctx, member: discord.member):
-  await ctx.send('Please use the channels for their intended purpose')
-
-
-@client.command()
-@commands.has_permissions(manage_messages=True)
-async def rule5(ctx, member: discord.Member):
-  await ctx.send('No abuse to staff')
-
-@client.command()
-@commands.has_permissions(manage_messages=True)
-async def rule6(ctx, member: discord.Member):
-  await ctx.send('Swearing is not allowed under any circumstance')
-
-@client.command()
-@commands.has_permissions(manage_messages=True)
-async def rule7(ctx, member: discord.Member):
-  await ctx.send('Do not spam')
-
-
-@client.command()
-@commands.has_permissions(manage_messages=True)
-async def rule8(ctx, member: discord.Member):
-  await ctx.send('Do not post malicious links')
-
-@client.command()
-@commands.has_permissions(manage_messages=True)
-async def rule9(ctx, member: discord.Member):
-  await ctx.send('Please keep a pingable username')
-
-@client.command()
-@commands.has_permissions(manage_messages=True)
-async def rule10(ctx, member: discord.Member):
-  await ctx.send('obey the discord ToS')
-
-
-@client.command()
-@commands.has_permissions(manage_messages=True)
-async def rule11(ctx, member: discord.member):
-  await ctx.send('dont annoy people in VCs')
-
-@client.command()
-@commands.has_permissions(manage_messages=True)
-async def rule12(ctx, member: discord.member):
-  await ctx.send('do not use alts to gain an advantage or to bypass anything')
-
-
-@client.command()
-@commands.has_permissions(manage_messages=True)
-async def rule13(ctx, member: discord.Member):
-  await ctx.send('racism will not be tolerated')
 
 @client.command(description="mutes a member. GIVE ME A REASON")
 @commands.has_permissions(manage_messages=True)
@@ -178,7 +110,7 @@ async def unwarn(ctx, member: discord.Member):
 
 @client.command(description="gives you info on the server")
 async def info(ctx):
-  await ctx.send('Fires World is all about trying to bring users together so that you can make friends and also enjoy your time on discord!')
+  await ctx.send("(your server) is all about trying to bring users together so that you can make friends and also enjoy your time on discord!")
 
 @client.command(description="clears the messages of a channel")
 @commands.has_permissions(manage_messages=True)
